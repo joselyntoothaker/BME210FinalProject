@@ -16,13 +16,13 @@ ze = 100 # z coordinate
 
 arm.gotoPoint(xs,ys,zs) 
 
-
+#establishes a button that must be pressed to run the rest of the code
 def on_press(key):
     global xs,ys,zs, xe,ye,ze
     var = str(format(key))
     semi = '\';\''
     
-    if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
+    if var == semi: #when ";" key is pressed, arms moves to end position
         arm.gotoPoint(xe,ye,ze) 
         time.sleep(5.)
         arm.gotoPoint(xs,ys,zs) 
