@@ -26,6 +26,7 @@ thickness = 1
 # Main Loop
 stop = False
 
+#resizes image
 while (not stop):
     img = picam2.capture_array()
     display_img = cv2.resize(img, ((int)(320), (int)(240)), 0, 0)
@@ -55,8 +56,10 @@ while (not stop):
     x2=process.endX
     y2=process.endY
     
+    #displays the final resized image with object location 
     cv2.rectangle(display_img, (x1, y1), (x2, y2), (255,0,0), 2)
     cv2.imshow("Camera", display_img)
+    #exit statement for camera
     try:
         if (cv2.waitKey(1) & 0xFF == ord('q')) or (cv2.getWindowProperty("Camera", 0) < 0): stop = True
     except: stop = True 
