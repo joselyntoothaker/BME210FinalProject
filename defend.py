@@ -5,10 +5,10 @@ import time
 arm = meArm.meArm() # takes inserted data from meArm.py aka calibration data
 arm.begin(0,0x70) #
 
-# Defending Position
-xd = 13 # x coordinate;;
+# Defending Position, this position is centered in goal but does not cross the goal line
+xd = 13 # x coordinate
 yd = 153 # y coordinate
 zd = 29 # z coordinate
 
 
-arm.gotoPoint(xd,yd,zd)
+arm.gotoPoint(xd,yd,zd) #moves the arm to the given defending position
