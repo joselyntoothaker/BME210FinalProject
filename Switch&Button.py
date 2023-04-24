@@ -16,52 +16,55 @@ xs = 0 # x coordinate
 ys =  195 # y coordinate
 zs = 90 # z coordinate
 # End Position
-xe =   0 # x coordinate
-ye = 195 # y coordinate
-ze =  30 # z coordinate
+xe =   175 # x coordinate
+ye = 0 # y coordinate
+ze =  90 # z coordinate
 
 arm.gotoPoint(xs,ys,zs) 
 arm.closeGripper()
 def throwing():
     print("THROWING MODE")
-    def on_press(key):
-        global xs,ys,zs, xe,ye,ze
-        var = str(format(key))
-        semi = '\';\''
+#     def on_press(key):
+#         global xs,ys,zs, xe,ye,ze
+#         var = str(format(key))
+#         semi = '\';\''
             
-        if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
-            arm.goDirectlyTo(xe,ye,ze) 
-            time.sleep(1)
-            arm.gotoPoint(xs,ys,zs) 
-                
-        pass
+        #if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
+    arm.goDirectlyTo(xe,ye,ze) 
+    time.sleep(0.5)
+    arm.gotoPoint(xs,ys,zs) 
+    state = switch()        
+    pass
 
-    def on_release(key):
-        pass
+#     def on_release(key):
+#         pass
 
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
+#     with Listener(on_press=on_press, on_release=on_release) as listener:
+#         listener.join()
 def defending():
     print("DEFENDING MODE")
-    def on_press(key):
-        global xs,ys,zs, xe,ye,ze
-        var = str(format(key))
-        semi = '\';\''
+    #def on_press(key):
+        #global xs,ys,zs, xe,ye,ze
+        #var = str(format(key))
+        #semi = '\';\''
         
-        if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
-            arm.goDirectlyTo(xe,ye,ze) 
-            time.sleep(1)
-            arm.gotoPoint(0,195,30) 
-            
-        pass
+        #if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
+    arm.goDirectlyTo(0,195,90) 
+    time.sleep(0.5)
+    arm.gotoPoint(0,195,30)
+    while True:
+        if GPIO.input(21):
+            state = switch();    
+    pass
 
-    def on_release(key):
-        pass
+#     def on_release(key):
+#         pass
 
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
+#     with Listener(on_press=on_press, on_release=on_release) as listener:
+#         listener.join()
 
 def switch():
+    arm.gotoPoint(xs,ys,zs)
     print("SWITCH MODE")
     while True:
         if GPIO.input(21):
