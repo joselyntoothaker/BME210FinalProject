@@ -8,6 +8,7 @@ arm = meArm.meArm() # takes inserted data from meArm.py aka calibration data
 arm.begin(0,0x70) #
 switch = 27
 button = 17
+#initializes the GPIO inputs for the button and switch
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -20,8 +21,10 @@ xe =  30 # x coordinate
 ye = 20 # y coordinate
 ze =  90 # z coordinate
 
+#starts at starting coordinates
 arm.gotoPoint(xs,ys,zs) 
-arm.closeGripper()
+
+#function for throwing, essentially the same as throw.py but more accessible
 def throwing():
     print("THROWING MODE")
 #     def on_press(key):
@@ -41,6 +44,8 @@ def throwing():
 
 #     with Listener(on_press=on_press, on_release=on_release) as listener:
 #         listener.join()
+
+#function for defending, essentially the same as defend.py but more accessible
 def defending():
     print("DEFENDING MODE")
     #def on_press(key):
@@ -63,6 +68,7 @@ def defending():
 #     with Listener(on_press=on_press, on_release=on_release) as listener:
 #         listener.join()
 
+#uses state machine to decide which side of the switch means what action is performed
 def switch():
     arm.gotoPoint(xs,ys,zs)
     print("SWITCH MODE")
