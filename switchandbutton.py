@@ -17,9 +17,9 @@ xs = 100 # x coordinate
 ys =  -20 # y coordinate
 zs = 90 # z coordinate
 # End Position
-xe =  30 # x coordinate
-ye = 20 # y coordinate
-ze =  90 # z coordinate
+xe =  90 # x coordinate
+ye = 60 # y coordinate
+ze =  100 # z coordinate
 
 #starts at starting coordinates
 arm.gotoPoint(xs,ys,zs) 
