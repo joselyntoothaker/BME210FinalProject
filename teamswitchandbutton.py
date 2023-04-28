@@ -12,9 +12,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # Start Position
-xs = 90 # x coordinate
-ys = -6 # y coordinate
-zs = 108 # z coordinate
+xs = 130 # x coordinate
+ys = -30 # y coordinate
+zs = 100# z coordinate
 # End Position
 xe = 80 # x coordinate
 ye = 144 # y coordinate
@@ -53,6 +53,10 @@ def defending():
     time.sleep(0.5)
     arm.gotoPoint(13,153,29)
     while True:
+        time.sleep(0.2)
+        arm.gotoPoint(53,153,29)
+        time.sleep(0.2)
+        arm.gotoPoint(-5,153,29)
         if GPIO.input(17):
             state = switch();    
     pass
