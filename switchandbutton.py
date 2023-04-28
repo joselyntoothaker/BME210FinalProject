@@ -13,64 +13,46 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # Start Position
-xs = 100 # x coordinate
+xs = 50 # x coordinate
 ys =  -20 # y coordinate
-zs = 90 # z coordinate
+zs = 120 # z coordinate
 # End Position
-xe =  90 # x coordinate
-ye = 60 # y coordinate
-ze =  100 # z coordinate
-
-#starts at starting coordinates
-arm.gotoPoint(xs,ys,zs) 
+xe =  -5 # x coordinate
+ye = 100 # y coordinate
+ze =  120 # z coordinate
 
 #function for throwing, essentially the same as throw.py but more accessible
 def throwing():
     print("THROWING MODE")
-#     def on_press(key):
-#         global xs,ys,zs, xe,ye,ze
-#         var = str(format(key))
-#         semi = '\';\''
-            
-        #if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
+    #starts at starting coordinates
+    arm.gotoPoint(xs,ys,zs) 
+    #enough time to add the ball
+    time.sleep(5)
     arm.goDirectlyTo(xe,ye,ze) 
     time.sleep(0.5)
     arm.gotoPoint(xs,ys,zs) 
     state = switch()        
     pass
 
-#     def on_release(key):
-#         pass
-
-#     with Listener(on_press=on_press, on_release=on_release) as listener:
-#         listener.join()
-
 #function for defending, essentially the same as defend.py but more accessible
 def defending():
     print("DEFENDING MODE")
-    #def on_press(key):
-        #global xs,ys,zs, xe,ye,ze
-        #var = str(format(key))
-        #semi = '\';\''
-        
-        #if var == semi: ## PARIALLY opens gripper, to percentage (inputed, default is 50% but this can be modified) of full open state when ";" key is pressed
-    #arm.goDirectlyTo(0,195,90) 
     time.sleep(0.5)
     arm.gotoPoint(5,135,30)
     while True:
+        #moves across the goal to defend against a ball in any position
+        time.sleep(0.3)
+        arm.gotoPoint(20, 135,35)
+        time.sleep(0.3)
+        arm.gotoPoint(-20, 135,35)
         if GPIO.input(27):
             state = switch();    
     pass
 
-#     def on_release(key):
-#         pass
-
-#     with Listener(on_press=on_press, on_release=on_release) as listener:
-#         listener.join()
-
 #uses state machine to decide which side of the switch means what action is performed
 def switch():
-    arm.gotoPoint(xs,ys,zs)
+    #my robot moves out of the way so middle robot can throw without interference
+    arm.gotoPoint(140,90,90)
     print("SWITCH MODE")
     while True:
         if GPIO.input(27):
