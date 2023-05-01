@@ -6,7 +6,7 @@ arm = meArm.meArm() # takes inserted data from meArm.py aka calibration data
 arm.begin(0,0x70) #locating
 
 #Start Position
-xs = 90 # x coordinate;;
+xs = 90 # x coordinate
 ys = -6 # y coordinate
 zs = 108 # z coordinate
 # End Position
